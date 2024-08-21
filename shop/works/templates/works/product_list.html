@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List - AlgoShop</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cerenas.club/uploads/posts/2022-12/1670859268_cerenas-club-p-fon-dlya-arkhitekturnogo-plansheta-oboi-81.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #f8b400;
+            color: #f8b400;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #f8b400;
+            font-size: 2em;
+            text-align: center;
+            margin: 0 0 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #f8b400;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        ul li:hover {
+            background-color: #f8b400;
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        a {
+            text-decoration: none;
+            color: #f8b400;
+            font-size: 1.1em;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f8b400;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            background-color: #f8b400;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .buttons a:hover {
+            background-color: #f5a623;
+            transform: scale(1.05);
+        }
+
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f8b400;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .return-btn:hover {
+            background-color: #f5a623;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Product List</h1>
+    </div>
+    <div class="container">
+        <h2>Available Products</h2>
+        <ul>
+            {% for product in products %}
+                <li>
+                    <span><strong>{{ product.name }}</strong> - {{ product.available_quantity }} in stock - ${{ product.price }}</span>
+                    <span>
+                        <a href="{% url 'edit_product' product.id %}">Edit</a>
+                        <a href="{% url 'delete_product' product.id %}">Delete</a>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="buttons">
+            <a href="{% url 'add_product' %}">Add New Product</a>
+        </div>
+    </div>
+    <a href="{% url 'dashboard' %}" class="return-btn">Return to Dashboard</a>
+</body>
+</html>

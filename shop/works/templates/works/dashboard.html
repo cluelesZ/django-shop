@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AlgoShop</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cerenas.club/uploads/posts/2022-12/1670859268_cerenas-club-p-fon-dlya-arkhitekturnogo-plansheta-oboi-81.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #f8b400;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #f8b400;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            color: #f8b400;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #f8b400;
+            font-size: 1.1em;
+            padding: 12px 20px;
+            display: inline-block;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #f8b400;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        ul li a:hover {
+            background-color: #f8b400;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .info-card {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-card h2 {
+            margin: 0 0 10px;
+            color: #f8b400;
+            font-size: 1.8em;
+        }
+
+        .info-card p {
+            margin: 0;
+            color: #ddd;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>Your role: {{ user.groups.all|join:", " }}</p>
+    </div>
+    <div class="container">
+        <div class="info-card">
+            <h2>Dashboard Overview</h2>
+            <p>Manage products, users, and more from this dashboard. Use the links below to access different functionalities based on your permissions.</p>
+        </div>
+        <ul>
+            {% if perms.clients.change_product %}
+                <li><a href="{% url 'product_list' %}">Change/Add Products</a></li>
+            {% endif %}
+            {% if perms.auth.add_user %}
+                <li><a href="{% url 'user_list' %}">Change/Add Users</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>

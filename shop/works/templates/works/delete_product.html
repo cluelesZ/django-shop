@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product - AlgoShop</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cerenas.club/uploads/posts/2022-12/1670859268_cerenas-club-p-fon-dlya-arkhitekturnogo-plansheta-oboi-81.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #f8b400;
+            margin: 0 0 20px;
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin: 20px 0;
+            color: #ddd;
+        }
+
+        button, a {
+            display: inline-block;
+            padding: 12px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button {
+            background-color: #e74c3c;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        a {
+            background-color: #f8b400;
+            color: #000;
+            border: none;
+        }
+
+        a:hover {
+            background-color: #f5a623;
+            transform: scale(1.05);
+        }
+
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f8b400;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .return-btn:hover {
+            background-color: #f5a623;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Product</h1>
+        <p>Are you sure you want to delete the product "{{ product.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, delete</button>
+            <a href="{% url 'product_list' %}">Cancel</a>
+        </form>
+    </div>
+    <a href="{% url 'dashboard' %}" class="return-btn">Return to Dashboard</a>
+</body>
+</html>

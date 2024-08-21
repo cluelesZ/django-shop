@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AlgoShop</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cerenas.club/uploads/posts/2022-12/1670859268_cerenas-club-p-fon-dlya-arkhitekturnogo-plansheta-oboi-81.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f8b400;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #f8b400;
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 3px solid #f8b400;
+            padding-bottom: 10px;
+        }
+
+        .product-list, .user-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .product-item, .user-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-item:hover, .user-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-item p, .user-item p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .product-item {
+            border-left: 5px solid #f8b400;
+        }
+
+        .user-item {
+            border-left: 5px solid #4caf50;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f8b400;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>AlgoShop</h1>
+</header>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">Available Products</h2>
+        <div class="product-list">
+            {% for product in products %}
+            <div class="product-item">
+                <p><strong>{{ product.name }}</strong></p>
+                <p>{{ product.available_quantity }} in stock</p>
+                <p>${{ product.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Our Team</h2>
+        <div class="user-list">
+            {% for user in users %}
+            <div class="user-item">
+                <p><strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+                <p>Name: {{ user.username }}</p>
+                {{ user.groups.all|join:", " }}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 AlgoShop. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

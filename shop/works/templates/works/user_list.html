@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List - AlgoShop</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cerenas.club/uploads/posts/2022-12/1670859268_cerenas-club-p-fon-dlya-arkhitekturnogo-plansheta-oboi-81.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #f8b400;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #f8b400;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #f8b400;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 15px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .user-role {
+            font-size: 0.9em;
+            color: #ddd;
+            margin-top: 5px;
+        }
+
+        .add-user-btn, .back-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 20px;
+        }
+
+        .add-user-btn {
+            background-color: #f8b400;
+            margin: 30px auto;
+            width: 220px;
+        }
+
+        .add-user-btn:hover {
+            background-color: #f5a623;
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            background-color: #f44336;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>User List</h1>
+    </div>
+    <div class="container">
+        <ul>
+            {% for user in users %}
+                <li>
+                    <div class="emoji">🧑‍💼</div>
+                    <p><strong>{{ user.first_name }} {{ user.last_name }}</strong> ({{ user.username }})</p>
+                    <p class="user-role">{{ user.groups.all|join:", " }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_user' %}" class="add-user-btn">Add New User</a>
+    </div>
+    <a href="{% url 'dashboard' %}" class="back-btn">Return to Dashboard</a>
+    <footer>
+        &copy; 2024 AlgoShop - All Rights Reserved
+    </footer>
+</body>
+</html>

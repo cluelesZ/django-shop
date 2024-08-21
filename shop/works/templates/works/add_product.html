@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - AlgoShop</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://cerenas.club/uploads/posts/2022-12/1670859268_cerenas-club-p-fon-dlya-arkhitekturnogo-plansheta-oboi-81.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #f8b400;
+            margin-top: 0;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form p {
+            margin: 15px 0;
+        }
+
+        button {
+            background-color: #f8b400;
+            border: none;
+            color: #000;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e0a800;
+        }
+
+        a {
+            color: #f8b400;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+            text-align: center;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #e0a800;
+        }
+
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f8b400;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .return-btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Product</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Product</button>
+        </form>
+        <a href="{% url 'product_list' %}">Back to product list</a>
+    </div>
+    <a href="{% url 'dashboard' %}" class="return-btn">Dashboard</a>
+</body>
+</html>
